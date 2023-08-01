@@ -1,13 +1,13 @@
 <body data-spy="scroll" data-target=".fixed-top">
 
     <!-- Preloader -->
-    <div class="spinner-wrapper">
+    <!-- <div class="spinner-wrapper">
         <div class="spinner">
             <div class="bounce1"></div>
             <div class="bounce2"></div>
             <div class="bounce3"></div>
         </div>
-    </div>
+    </div> -->
     <!-- end of preloader -->
 
 
@@ -63,10 +63,28 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll" href="#pricing">PRICING</a>
                     </li>
+                    <li class="nav-item" *ngIf="this.auth.isAuthenticated$ | async;">
+                        <template *ngIf="this.auth.user$ | async as user">
+                            <a class="nav-link page-scroll" href="#pricing">{{user.name}}</a>
+                        </template>
+                    </li>
                 </ul>
-                <span class="nav-item">
-                    <a class="btn-outline-sm" href="log-in.html">LOG IN</a>
-                </span>
+                <ng-container *ngIf="this.auth.isAuthenticated$ | async; else loggedOut">
+                    <span class="nav-item">
+                        <a class="btn-outline-sm" (click)="this.logout()">
+                            Cerrar Sesión
+                        </a>
+                    </span>
+                </ng-container>
+
+                <ng-template #loggedOut>
+                    <span else class="nav-item">
+                        <a class="btn-outline-sm" (click)="this.login()">
+                            Iniciar sesión
+                        </a>
+                    </span>
+                </ng-template>
+
             </div>
         </div> <!-- end of container -->
     </nav> <!-- end of navbar -->
@@ -89,7 +107,8 @@
                     <div class="col-lg-6 col-xl-7">
                         <div class="image-container">
                             <div class="img-wrapper">
-                                <img class="img-fluid" src="../../../assets/images/header-software-app.png" alt="alternative">
+                                <img class="img-fluid" src="../../../assets/images/header-software-app.png"
+                                    alt="alternative">
                             </div> <!-- end of img-wrapper -->
                         </div> <!-- end of image-container -->
                     </div> <!-- end of col -->
@@ -124,22 +143,28 @@
                         <div class="swiper-container image-slider">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <img class="img-fluid" src="../../../assets/images/customer-logo-1.png" alt="alternative">
+                                    <img class="img-fluid" src="../../../assets/images/customer-logo-1.png"
+                                        alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img class="img-fluid" src="../../../assets/images/customer-logo-2.png" alt="alternative">
+                                    <img class="img-fluid" src="../../../assets/images/customer-logo-2.png"
+                                        alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img class="img-fluid" src="../../../assets/images/customer-logo-3.png" alt="alternative">
+                                    <img class="img-fluid" src="../../../assets/images/customer-logo-3.png"
+                                        alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img class="img-fluid" src="../../../assets/images/customer-logo-4.png" alt="alternative">
+                                    <img class="img-fluid" src="../../../assets/images/customer-logo-4.png"
+                                        alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img class="img-fluid" src="../../../assets/images/customer-logo-5.png" alt="alternative">
+                                    <img class="img-fluid" src="../../../assets/images/customer-logo-5.png"
+                                        alt="alternative">
                                 </div>
                                 <div class="swiper-slide">
-                                    <img class="img-fluid" src="../../../assets/images/customer-logo-6.png" alt="alternative">
+                                    <img class="img-fluid" src="../../../assets/images/customer-logo-6.png"
+                                        alt="alternative">
                                 </div>
                             </div> <!-- end of swiper-wrapper -->
                         </div> <!-- end of swiper container -->
@@ -228,8 +253,13 @@
                     <!-- Tabs Links -->
                     <ul class="nav nav-tabs" id="argoTabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="nav-tab-1" data-toggle="tab" href="#tab-1" role="tab"
-                                aria-controls="tab-1" aria-selected="true"><i class="fas fa-list"></i>List Builder</a>
+                            <a class="nav-link active" data-toggle="tab" href="#tab-control-de-gastos" role="tab"
+                                aria-controls="tab-control-de-gastos" aria-selected="true">
+                                <i class="fas fa-chart-bar"></i>Control de gastos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="nav-tab-1" data-toggle="tab" href="#tab-1" role="tab"
+                                aria-controls="tab-1" aria-selected="false"><i class="fas fa-list"></i>List Builder</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="nav-tab-2" data-toggle="tab" href="#tab-2" role="tab"
@@ -248,11 +278,63 @@
                     <div class="tab-content" id="argoTabsContent">
 
                         <!-- Tab -->
-                        <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+                        <div class="tab-pane fade  show active" id="tab-control-de-gastos" role="tabpanel"
+                            aria-labelledby="tab-control-de-gastos">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="image-container">
-                                        <img class="img-fluid" src="../../../assets/images/features-1.png" alt="alternative">
+                                        <img class="img-fluid" src="../../../assets/images/features-3.png"
+                                            alt="alternative">
+                                    </div> <!-- end of image-container -->
+                                </div> <!-- end of col -->
+                                <div class="col-lg-6">
+                                    <div class="text-container">
+                                        <h3>Control de gastos</h3>
+                                        <p>ControlGastos+ es una potente y fácil herramienta diseñada para ayudarte a
+                                            tener un control total sobre tus finanzas personales o empresariales. Con
+                                            esta aplicación, podrás monitorear tus ingresos y gastos de manera sencilla,
+                                            organizada y segura, permitiéndote tomar decisiones financieras informadas y
+                                            mejorar tu salud económica.</p>
+                                        <ul class="list-unstyled li-space-lg">
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Registro de transacciones: ControlGastos+ te
+                                                    permite registrar de manera rápida y sencilla todos tus ingresos y
+                                                    gastos. Puedes categorizar cada transacción para obtener una visión
+                                                    clara de en qué estás gastando tu dinero.</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Análisis y reportes: Genera informes gráficos y
+                                                    detallados para analizar tus patrones de gastos a lo largo del
+                                                    tiempo. Estos reportes te ayudarán a identificar áreas donde podrías
+                                                    reducir gastos o ahorrar más.</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">
+                                                    Presupuestos personalizados: Establece
+                                                    presupuestos mensuales o anuales en diferentes categorías y recibe
+                                                    notificaciones cuando te acerques o excedas los límites
+                                                    establecidos.
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <a class="btn-solid-reg popup-with-move-anim"
+                                            [href]="this.configuracion_proyectos.contro_de_gastos.url">Entra</a>
+                                    </div> <!-- end of text-container -->
+                                </div> <!-- end of col -->
+                            </div> <!-- end of row -->
+                        </div> <!-- end of tab-pane -->
+                        <!-- end of tab -->
+
+                        <!-- Tab -->
+                        <div class="tab-pane fade" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="image-container">
+                                        <img class="img-fluid" src="../../../assets/images/features-1.png"
+                                            alt="alternative">
                                     </div> <!-- end of image-container -->
                                 </div> <!-- end of col -->
                                 <div class="col-lg-6">
@@ -292,7 +374,8 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="image-container">
-                                        <img class="img-fluid" src="../../../assets/images/features-2.png" alt="alternative">
+                                        <img class="img-fluid" src="../../../assets/images/features-2.png"
+                                            alt="alternative">
                                     </div> <!-- end of image-container -->
                                 </div> <!-- end of col -->
                                 <div class="col-lg-6">
@@ -331,7 +414,8 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="image-container">
-                                        <img class="img-fluid" src="../../../assets/images/features-3.png" alt="alternative">
+                                        <img class="img-fluid" src="../../../assets/images/features-3.png"
+                                            alt="alternative">
                                     </div> <!-- end of image-container -->
                                 </div> <!-- end of col -->
                                 <div class="col-lg-6">
@@ -364,6 +448,8 @@
                             </div> <!-- end of row -->
                         </div> <!-- end of tab-pane -->
                         <!-- end of tab -->
+
+
 
                     </div> <!-- end of tab content -->
                     <!-- end of tabs content -->
@@ -735,7 +821,8 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="image-wrapper">
-                                        <img class="img-fluid" src="../../../assets/images/testimonial-1.jpg" alt="alternative">
+                                        <img class="img-fluid" src="../../../assets/images/testimonial-1.jpg"
+                                            alt="alternative">
                                     </div> <!-- end of image-wrapper -->
                                     <div class="text-wrapper">
                                         <div class="testimonial-text">I started to use Tivo with the free trial about a
@@ -750,7 +837,8 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="image-wrapper">
-                                        <img class="img-fluid" src="../../../assets/images/testimonial-2.jpg" alt="alternative">
+                                        <img class="img-fluid" src="../../../assets/images/testimonial-2.jpg"
+                                            alt="alternative">
                                     </div> <!-- end of image-wrapper -->
                                     <div class="text-wrapper">
                                         <div class="testimonial-text">Awesome features for the money. I never thought
@@ -765,7 +853,8 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="image-wrapper">
-                                        <img class="img-fluid" src="../../../assets/images/testimonial-3.jpg" alt="alternative">
+                                        <img class="img-fluid" src="../../../assets/images/testimonial-3.jpg"
+                                            alt="alternative">
                                     </div> <!-- end of image-wrapper -->
                                     <div class="text-wrapper">
                                         <div class="testimonial-text">Tivo is the best marketing automation app for
@@ -781,7 +870,8 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="image-wrapper">
-                                        <img class="img-fluid" src="../../../assets/images/testimonial-4.jpg" alt="alternative">
+                                        <img class="img-fluid" src="../../../assets/images/testimonial-4.jpg"
+                                            alt="alternative">
                                     </div> <!-- end of image-wrapper -->
                                     <div class="text-wrapper">
                                         <div class="testimonial-text">Tivo is one of the greatest marketing automation
@@ -812,7 +902,7 @@
 
 
     <!-- Newsletter -->
-    <div class="form">
+    <div class="form" *ngIf="false">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
