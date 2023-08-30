@@ -8,7 +8,7 @@ export const environment = {
     },
     proyectos: {
         contro_de_gastos: {
-            url: "https://google.com"
+            url: "http://localhost:63876/"
         }
     }
 };
