@@ -18,13 +18,13 @@ import { environment } from 'src/environments/environment.dev';
     BrowserModule,
 
     // Import the module into the application, with configuration
-    AuthModule.forRoot({
-      domain: environment.config.auth0.domain,
-      clientId: environment.config.auth0.clientId,
-      authorizationParams: {
-        redirect_uri: window.location.origin
-      },
-    }),
+    // AuthModule.forRoot({
+    //   domain: environment.config.auth0.domain,
+    //   clientId: environment.config.auth0.clientId,
+    //   authorizationParams: {
+    //     redirect_uri: window.location.origin
+    //   },
+    // }),
     AppRoutingModule
   ],
   providers: [],
