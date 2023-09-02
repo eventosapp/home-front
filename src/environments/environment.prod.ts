@@ -8,7 +8,7 @@ export const environment = {
     },
     proyectos: {
         contro_de_gastos: {
-            url: "http://52.20.171.169:8001"
+            url: "https://planync.com:8001"
         }
     }
 };
