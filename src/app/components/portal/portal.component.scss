@@ -1,0 +1,11 @@
+@media (min-width: 992px) {
+  .safe-area {
+    height: 100px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .safe-area {
+    height: 50px;
+  }
+}

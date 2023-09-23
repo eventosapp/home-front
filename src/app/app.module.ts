@@ -8,11 +8,19 @@ import { LandingComponent } from './components/landing/landing.component';
 // Import the module from the SDK
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment } from 'src/environments/environment.dev';
+import { PortalComponent } from './components/portal/portal.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { MainComponent } from './components/main/main.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
+    PortalComponent,
+    NavbarComponent,
+    MainComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
